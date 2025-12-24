@@ -1,16 +1,20 @@
 import { useEffect } from 'react';
-import { useGeolocation } from './shared/hooks/useGeolocation';
-import { useLocationStore } from './modules/location/store/store';
-import { useWeatherStore } from './modules/weather/store';
-import { useUIStore } from './shared/store/ui';
-import { getWeatherByCity, getWeatherByCoords } from './modules/location/service/service';
-import { SearchBar } from './modules/location/components/SearchBar';
+
 import { CitySuggestions } from './modules/location/components/CitySuggestions';
+import { SearchBar } from './modules/location/components/SearchBar';
+import {
+  getWeatherByCity,
+  getWeatherByCoords,
+} from './modules/location/service/service';
+import { useLocationStore } from './modules/location/store/store';
 import { CurrentWeather } from './modules/weather/components/CurrentWeather';
+import { useWeatherStore } from './modules/weather/store';
+import { useGeolocation } from './shared/hooks/useGeolocation';
+import { useUIStore } from './shared/store/ui';
 
 function App() {
   useGeolocation();
-  
+
   const coords = useLocationStore((state) => state.coords);
   const cityName = useLocationStore((state) => state.cityName);
   const setCityName = useLocationStore((state) => state.setCityName);
@@ -91,7 +95,7 @@ function App() {
           <p className="text-xl font-medium text-white/90">{cityName}</p>
         )}
       </div>
-      
+
       <div className="mb-6 w-full max-w-md">
         <SearchBar onSearch={handleCitySearch} />
       </div>

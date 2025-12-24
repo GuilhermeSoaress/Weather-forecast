@@ -1,5 +1,6 @@
-import { Search } from 'lucide-react';
 import { useState } from 'react';
+
+import { Search } from 'lucide-react';
 
 export const SearchBar = ({ onSearch }) => {
   const [input, setInput] = useState('');

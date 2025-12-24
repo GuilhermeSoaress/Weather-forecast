@@ -1,4 +1,4 @@
-import { Cloud, Droplets, Wind, Eye } from 'lucide-react';
+import { Cloud, Droplets, Eye, Wind } from 'lucide-react';
 
 export const CurrentWeather = ({ data }) => {
   if (!data) return null;

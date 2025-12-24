@@ -6,6 +6,6 @@ export const useLocationStore = create((set) => ({
 
   setCoords: (coords) => set({ coords }),
   setCityName: (cityName) => set({ cityName }),
-  
+
   reset: () => set({ coords: null, cityName: '' }),
 }));

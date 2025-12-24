@@ -6,6 +6,6 @@ export const useWeatherStore = create((set) => ({
 
   setCurrent: (current) => set({ current }),
   setForecast: (forecast) => set({ forecast }),
-  
+
   reset: () => set({ current: null, forecast: null }),
 }));
