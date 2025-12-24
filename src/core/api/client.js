@@ -8,7 +8,7 @@ const apiClient = axios.create({
   params: {
     appid: API_KEY,
     units: 'metric',
-    lang: 'en',
+    lang: 'pt_br',
   },
 });
 
