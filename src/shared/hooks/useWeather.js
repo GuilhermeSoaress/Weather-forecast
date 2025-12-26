@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
-import { useLocationStore } from '../../modules/location/store/store';
-import { useWeatherStore } from '../../modules/weather/store/store';
-import { useUIStore } from '../store/ui';
-import { getWeatherByCity, getWeatherByCoords } from '../../modules/weather/service/service';
+import { useLocationStore } from '@/modules/location/store/store';
+import { useWeatherStore } from '@/modules/weather/store/weatherStore';
+import { useUIStore } from '@/shared/store/ui';
+import { getWeatherByCity, getWeatherByCoords } from '@/modules/weather/service/service';
 
 export const useWeather = () => {
   const setCityName = useLocationStore((state) => state.setCityName);

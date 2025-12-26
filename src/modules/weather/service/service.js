@@ -1,4 +1,4 @@
-import apiClient from '../../../core/api/client';
+import apiClient from '@/core/api/client';
 
 export const getWeatherByCoords = async (lat, lon) => {
   const response = await apiClient.get('/weather', {

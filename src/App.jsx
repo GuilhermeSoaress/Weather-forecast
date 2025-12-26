@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { CitySuggestions } from './modules/location/components/CitySuggestions';
-import { SearchBar } from './modules/location/components/SearchBar';
-import { useLocationStore } from './modules/location/store/store';
-import { CurrentWeather } from './modules/weather/components/CurrentWeather';
-import { useWeatherStore } from './modules/weather/store/store';
-import { useGeolocation } from './shared/hooks/useGeolocation';
-import { useWeather } from './shared/hooks/useWeather';
-import { useUIStore } from './shared/store/ui';
+import { CitySuggestions } from '@/modules/location/components/CitySuggestions';
+import { SearchBar } from '@/modules/location/components/SearchBar';
+import { useLocationStore } from '@/modules/location/store/store';
+import { CurrentWeather } from '@/modules/weather/components/CurrentWeather';
+import { useWeatherStore } from '@/modules/weather/store/weatherStore';
+import { useGeolocation } from '@/shared/hooks/useGeolocation';
+import { useWeather } from '@/shared/hooks/useWeather';
+import { useUIStore } from '@/shared/store/ui';
 
 function App() {
   useGeolocation();
