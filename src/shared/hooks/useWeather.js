@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useUIStore } from '@/shared/store/ui';
 
-import { useLocationStore } from '@/modules/location/store/store';
+import { useLocationStore } from '@/modules/location/store/locationStore';
 import {
   getWeatherByCity,
   getWeatherByCoords,

@@ -6,7 +6,7 @@ import { useUIStore } from '@/shared/store/ui';
 
 import { CitySuggestions } from '@/modules/location/components/CitySuggestions';
 import { SearchBar } from '@/modules/location/components/SearchBar';
-import { useLocationStore } from '@/modules/location/store/store';
+import { useLocationStore } from '@/modules/location/store/locationStore';
 import { CurrentWeather } from '@/modules/weather/components/CurrentWeather';
 import { useWeatherStore } from '@/modules/weather/store/weatherStore';
 
