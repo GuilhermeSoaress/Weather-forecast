@@ -1,13 +1,9 @@
 import { useCallback } from 'react';
 
-import { useUIStore } from '@/shared/store/ui';
-
 import { useLocationStore } from '@/modules/location/store/locationStore';
-import {
-  getWeatherByCity,
-  getWeatherByCoords,
-} from '@/modules/weather/service/weatherService';
-import { useWeatherStore } from '@/modules/weather/store/weatherStore';
+import { useWeatherStore } from '../store/weatherStore';
+import { useUIStore } from '@/shared/store/ui';
+import { getWeatherByCity, getWeatherByCoords } from '../service/weatherService';
 
 export const useWeather = () => {
   const setCityName = useLocationStore((state) => state.setCityName);
@@ -20,7 +16,7 @@ export const useWeather = () => {
       setCityName(data.name);
       setCurrentWeather(data);
     },
-    [setCityName, setCurrentWeather]
+    [setCityName, setCurrentWeather],
   );
 
   const fetchByCity = useCallback(
@@ -36,7 +32,7 @@ export const useWeather = () => {
         setLoading(false);
       }
     },
-    [setLoading, setError, fetchWeather]
+    [setLoading, setError, fetchWeather],
   );
 
   const fetchByCoords = useCallback(
@@ -52,7 +48,7 @@ export const useWeather = () => {
         setLoading(false);
       }
     },
-    [setLoading, setError, fetchWeather]
+    [setLoading, setError, fetchWeather],
   );
 
   return { fetchByCity, fetchByCoords };
