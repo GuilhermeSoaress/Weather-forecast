@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 
-import { useLocationStore } from '@/modules/location/store/store';
 import { useUIStore } from '@/shared/store/ui';
+
+import { useLocationStore } from '@/modules/location/store/store';
 
 export const useGeolocation = () => {
   const setCoords = useLocationStore((state) => state.setCoords);
