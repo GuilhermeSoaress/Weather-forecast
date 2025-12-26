@@ -6,7 +6,7 @@ import { useLocationStore } from '@/modules/location/store/locationStore';
 import {
   getWeatherByCity,
   getWeatherByCoords,
-} from '@/modules/weather/service/service';
+} from '@/modules/weather/service/weatherService';
 import { useWeatherStore } from '@/modules/weather/store/weatherStore';
 
 export const useWeather = () => {
