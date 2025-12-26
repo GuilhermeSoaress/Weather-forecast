@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
 export const useWeatherStore = create((set) => ({
-  current: null,
+  currentWeather: null,
   forecast: null,
 
-  setCurrent: (current) => set({ current }),
+  setCurrent: (currentWeather) => set({ currentWeather }),
   setForecast: (forecast) => set({ forecast }),
 
-  reset: () => set({ current: null, forecast: null }),
+  reset: () => set({ currentWeather: null, forecast: null }),
 }));

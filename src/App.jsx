@@ -1,61 +1,28 @@
 import { useEffect } from 'react';
-
 import { CitySuggestions } from './modules/location/components/CitySuggestions';
 import { SearchBar } from './modules/location/components/SearchBar';
-import {
-  getWeatherByCity,
-  getWeatherByCoords,
-} from './modules/location/service/service';
 import { useLocationStore } from './modules/location/store/store';
 import { CurrentWeather } from './modules/weather/components/CurrentWeather';
-import { useWeatherStore } from './modules/weather/store';
+import { useWeatherStore } from './modules/weather/store/store';
 import { useGeolocation } from './shared/hooks/useGeolocation';
+import { useWeather } from './shared/hooks/useWeather';
 import { useUIStore } from './shared/store/ui';
 
 function App() {
   useGeolocation();
+  const { fetchByCity, fetchByCoords } = useWeather();
 
   const coords = useLocationStore((state) => state.coords);
   const cityName = useLocationStore((state) => state.cityName);
-  const setCityName = useLocationStore((state) => state.setCityName);
-  const current = useWeatherStore((state) => state.current);
-  const setCurrent = useWeatherStore((state) => state.setCurrent);
+  const currentWeather = useWeatherStore((state) => state.currentWeather);
   const isLoading = useUIStore((state) => state.isLoading);
   const error = useUIStore((state) => state.error);
-  const setLoading = useUIStore((state) => state.setLoading);
-  const setError = useUIStore((state) => state.setError);
-
-  const handleCitySearch = async (city) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await getWeatherByCity(city);
-      setCityName(data.name);
-      setCurrent(data);
-      setLoading(false);
-    } catch (err) {
-      setError('Cidade não encontrada. Tente novamente.');
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
     if (coords) {
-      const fetchWeather = async () => {
-        try {
-          setLoading(true);
-          const data = await getWeatherByCoords(coords.lat, coords.lon);
-          setCityName(data.name);
-          setCurrent(data);
-          setLoading(false);
-        } catch (err) {
-          setError('Falha ao buscar dados do clima');
-          setLoading(false);
-        }
-      };
-      fetchWeather();
+      fetchByCoords(coords.lat, coords.lon);
     }
-  }, [coords, setLoading, setError, setCityName, setCurrent]);
+  }, [coords, fetchByCoords]);
 
   if (isLoading) {
     return (
@@ -79,8 +46,8 @@ function App() {
             Previsão do tempo em tempo real
           </p>
         </div>
-        <SearchBar onSearch={handleCitySearch} />
-        <CitySuggestions onCitySelect={handleCitySearch} />
+        <SearchBar onSearch={fetchByCity} />
+        <CitySuggestions onCitySelect={fetchByCity} />
       </div>
     );
   }
@@ -97,10 +64,10 @@ function App() {
       </div>
 
       <div className="mb-6 w-full max-w-md">
-        <SearchBar onSearch={handleCitySearch} />
+        <SearchBar onSearch={fetchByCity} />
       </div>
 
-      {current && <CurrentWeather data={current} />}
+      {currentWeather && <CurrentWeather data={currentWeather} />}
     </div>
   );
 }

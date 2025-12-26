@@ -24,7 +24,7 @@ export const CitySuggestions = ({ onCitySelect }) => {
             className="group relative overflow-hidden rounded-2xl bg-white/10 px-5 py-6 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20 hover:shadow-xl"
           >
             <div className="flex flex-col items-center gap-2">
-              <span className="text-3xl">{city.icon}</span>
+              <span className="text-3xl text-white">{city.icon}</span>
               <div className="flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5 text-white/70" />
                 <span className="text-sm font-semibold text-white">
