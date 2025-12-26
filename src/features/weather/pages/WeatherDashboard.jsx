@@ -1,29 +1,16 @@
-import { useEffect } from 'react';
-
-import { useGeolocation } from '@/shared/hooks/useGeolocation';
-import { useWeather } from '../hooks/useWeather';
-import { useUIStore } from '@/shared/store/ui';
-import { CitySuggestions } from '@/modules/location/components/CitySuggestions';
-import { SearchBar } from '@/modules/location/components/SearchBar';
-import { useLocationStore } from '@/modules/location/store/locationStore';
-import { CurrentWeather } from '../components/CurrentWeather';
-import { useWeatherStore } from '../store/weatherStore';
+import { CitySuggestions, SearchBar } from '@/features/location';
+import { CurrentWeather } from '@/features/weather';
+import { useWeatherDashboard } from '../hooks/useWeatherDashboard';
 
 export const WeatherDashboard = () => {
-  useGeolocation();
-  const { fetchByCity, fetchByCoords } = useWeather();
-
-  const coords = useLocationStore((state) => state.coords);
-  const cityName = useLocationStore((state) => state.cityName);
-  const currentWeather = useWeatherStore((state) => state.currentWeather);
-  const isLoading = useUIStore((state) => state.isLoading);
-  const error = useUIStore((state) => state.error);
-
-  useEffect(() => {
-    if (coords) {
-      fetchByCoords(coords.lat, coords.lon);
-    }
-  }, [coords, fetchByCoords]);
+  const {
+    cityName,
+    currentWeather,
+    isLoading,
+    coords,
+    hasError,
+    handleCitySearch,
+  } = useWeatherDashboard();
 
   if (isLoading) {
     return (
@@ -36,7 +23,7 @@ export const WeatherDashboard = () => {
     );
   }
 
-  if (error && !coords) {
+  if (hasError && !coords) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 px-4 py-12">
         <div className="mb-12 text-center">
@@ -47,8 +34,8 @@ export const WeatherDashboard = () => {
             Previsão do tempo em tempo real
           </p>
         </div>
-        <SearchBar onSearch={fetchByCity} />
-        <CitySuggestions onCitySelect={fetchByCity} />
+        <SearchBar onSearch={handleCitySearch} />
+        <CitySuggestions onCitySelect={handleCitySearch} />
       </div>
     );
   }
@@ -65,7 +52,7 @@ export const WeatherDashboard = () => {
       </div>
 
       <div className="mb-6 w-full max-w-md">
-        <SearchBar onSearch={fetchByCity} />
+        <SearchBar onSearch={handleCitySearch} />
       </div>
 
       {currentWeather && <CurrentWeather data={currentWeather} />}

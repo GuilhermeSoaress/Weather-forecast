@@ -1,4 +1,4 @@
-import { WeatherDashboard } from '@/modules/weather/views/WeatherDashboard';
+import { WeatherDashboard } from '@/features/weather/pages/WeatherDashboard';
 
 function App() {
   return <WeatherDashboard />;

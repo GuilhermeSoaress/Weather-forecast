@@ -1,4 +1,4 @@
-import apiConfig from '@/shared/service/apiConfig';
+import apiConfig from '@/shared/config/apiConfig';
 
 export const getWeatherByCoords = async (lat, lon) => {
   const response = await apiConfig.get('/weather', {

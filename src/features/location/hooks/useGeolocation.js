@@ -1,17 +1,15 @@
 import { useEffect } from 'react';
 
-import { useUIStore } from '@/shared/store/ui';
-
-import { useLocationStore } from '@/modules/location/store/locationStore';
+import { useLocationStore } from '../store/locationStore';
 
 export const useGeolocation = () => {
   const setCoords = useLocationStore((state) => state.setCoords);
-  const setError = useUIStore((state) => state.setError);
-  const setLoading = useUIStore((state) => state.setLoading);
+  const setError = useLocationStore((state) => state.setError);
+  const setLoading = useLocationStore((state) => state.setLoading);
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      setError('Geolocation is not supported by your browser');
+      setError('Geolocalização não é suportada pelo seu navegador');
       return;
     }
 
