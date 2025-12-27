@@ -9,21 +9,23 @@ export const CurrentWeather = ({ data }) => {
   const icon = data.weather[0].icon;
 
   return (
-    <div className="w-full max-w-md rounded-3xl bg-white/10 p-8 backdrop-blur-md">
-      <div className="mb-6 text-center">
-        <img
-          src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
-          alt={description}
-          className="mx-auto h-32 w-32 drop-shadow-lg"
-        />
-        <p className="mt-2 text-lg capitalize text-white/90">{description}</p>
-      </div>
+    <div className="w-full rounded-3xl bg-white/10 p-6 backdrop-blur-md">
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <div className="text-6xl font-bold text-white">{temp}°</div>
+          <p className="mt-1 text-sm text-white/80">
+            Sensação térmica {feelsLike}°
+          </p>
+        </div>
 
-      <div className="mb-6 text-center">
-        <div className="text-7xl font-bold text-white">{temp}°</div>
-        <p className="mt-2 text-lg text-white/80">
-          Sensação térmica {feelsLike}°
-        </p>
+        <div className="flex flex-col items-center">
+          <img
+            src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
+            alt={description}
+            className="h-24 w-24 drop-shadow-lg"
+          />
+          <p className="text-sm capitalize text-white/90">{description}</p>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">

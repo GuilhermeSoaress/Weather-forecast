@@ -1,4 +1,5 @@
-import { useEffect, useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
+
 import {
   useGeolocation,
   useLocationSearch,
@@ -15,6 +16,7 @@ export const useWeatherDashboard = () => {
 
   const { fetchByCity, fetchByCoords } = useWeather();
   const currentWeather = useWeatherStore((state) => state.currentWeather);
+  const forecast = useWeatherStore((state) => state.forecast);
   const isLoading = useWeatherStore((state) => state.isLoading);
   const weatherError = useWeatherStore((state) => state.error);
 
@@ -33,12 +35,13 @@ export const useWeatherDashboard = () => {
         console.error('Erro ao buscar cidade:', error);
       }
     },
-    [searchCity, fetchByCity],
+    [searchCity, fetchByCity]
   );
 
   return {
     cityName,
     currentWeather,
+    forecast,
     isLoading,
     coords,
     hasError: weatherError || locationError,

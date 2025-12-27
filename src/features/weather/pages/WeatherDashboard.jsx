@@ -1,11 +1,18 @@
 import { CitySuggestions, SearchBar } from '@/features/location';
-import { CurrentWeather } from '@/features/weather';
+import {
+  CurrentWeather,
+  DailyForecast,
+  HourlyForecast,
+  PrecipitationForecast,
+} from '@/features/weather';
+
 import { useWeatherDashboard } from '../hooks/useWeatherDashboard';
 
 export const WeatherDashboard = () => {
   const {
     cityName,
     currentWeather,
+    forecast,
     isLoading,
     coords,
     hasError,
@@ -41,21 +48,28 @@ export const WeatherDashboard = () => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 px-4 py-8">
-      <div className="mb-6 text-center">
-        <h1 className="mb-2 text-5xl font-bold text-white drop-shadow-lg">
-          SkyCast
-        </h1>
-        {cityName && (
-          <p className="text-xl font-medium text-white/90">{cityName}</p>
-        )}
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 px-4 py-6">
+      <div className="mx-auto max-w-2xl">
+        <div className="mb-4 text-center">
+          <h1 className="text-3xl font-bold text-white drop-shadow-lg">
+            SkyCast
+          </h1>
+          {cityName && (
+            <p className="mt-1 text-lg font-medium text-white/90">{cityName}</p>
+          )}
+        </div>
 
-      <div className="mb-6 w-full max-w-md">
-        <SearchBar onSearch={handleCitySearch} />
-      </div>
+        <div className="mb-6">
+          <SearchBar onSearch={handleCitySearch} />
+        </div>
 
-      {currentWeather && <CurrentWeather data={currentWeather} />}
+        <div className="space-y-4">
+          {currentWeather && <CurrentWeather data={currentWeather} />}
+          {forecast && <HourlyForecast data={forecast} />}
+          {forecast && <DailyForecast data={forecast} />}
+          {forecast && <PrecipitationForecast data={forecast} />}
+        </div>
+      </div>
     </div>
   );
 };

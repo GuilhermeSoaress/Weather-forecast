@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 
 import {
+  getForecastByCity,
+  getForecastByCoords,
   getWeatherByCity,
   getWeatherByCoords,
 } from '../services/weatherService';
@@ -8,6 +10,7 @@ import { useWeatherStore } from '../store/weatherStore';
 
 export const useWeather = () => {
   const setCurrentWeather = useWeatherStore((state) => state.setCurrentWeather);
+  const setForecast = useWeatherStore((state) => state.setForecast);
   const setLoading = useWeatherStore((state) => state.setLoading);
   const setError = useWeatherStore((state) => state.setError);
 
@@ -16,9 +19,13 @@ export const useWeather = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await getWeatherByCity(city);
-        setCurrentWeather(data);
-        return data;
+        const [weatherData, forecastData] = await Promise.all([
+          getWeatherByCity(city),
+          getForecastByCity(city),
+        ]);
+        setCurrentWeather(weatherData);
+        setForecast(forecastData);
+        return weatherData;
       } catch (err) {
         const errorMsg = 'Cidade não encontrada. Tente novamente.';
         setError(errorMsg);
@@ -27,7 +34,7 @@ export const useWeather = () => {
         setLoading(false);
       }
     },
-    [setLoading, setError, setCurrentWeather]
+    [setLoading, setError, setCurrentWeather, setForecast]
   );
 
   const fetchByCoords = useCallback(
@@ -35,9 +42,13 @@ export const useWeather = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await getWeatherByCoords(lat, lon);
-        setCurrentWeather(data);
-        return data;
+        const [weatherData, forecastData] = await Promise.all([
+          getWeatherByCoords(lat, lon),
+          getForecastByCoords(lat, lon),
+        ]);
+        setCurrentWeather(weatherData);
+        setForecast(forecastData);
+        return weatherData;
       } catch (err) {
         const errorMsg = 'Falha ao buscar dados do clima';
         setError(errorMsg);
@@ -46,7 +57,7 @@ export const useWeather = () => {
         setLoading(false);
       }
     },
-    [setLoading, setError, setCurrentWeather]
+    [setLoading, setError, setCurrentWeather, setForecast]
   );
 
   return { fetchByCity, fetchByCoords };

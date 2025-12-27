@@ -13,3 +13,17 @@ export const getWeatherByCity = async (cityName) => {
   });
   return response.data;
 };
+
+export const getForecastByCoords = async (lat, lon) => {
+  const response = await apiConfig.get('/forecast', {
+    params: { lat, lon },
+  });
+  return response.data;
+};
+
+export const getForecastByCity = async (cityName) => {
+  const response = await apiConfig.get('/forecast', {
+    params: { q: cityName },
+  });
+  return response.data;
+};
