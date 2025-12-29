@@ -7,12 +7,14 @@ import {
   getWeatherByCoords,
 } from '../services/weatherService';
 import { useWeatherStore } from '../store/weatherStore';
+import { useToastStore } from '@/shared/store/toastStore';
 
 export const useWeather = () => {
   const setCurrentWeather = useWeatherStore((state) => state.setCurrentWeather);
   const setForecast = useWeatherStore((state) => state.setForecast);
   const setLoading = useWeatherStore((state) => state.setLoading);
   const setError = useWeatherStore((state) => state.setError);
+  const addToast = useToastStore((state) => state.addToast);
 
   const fetchByCity = useCallback(
     async (city) => {
@@ -29,12 +31,13 @@ export const useWeather = () => {
       } catch (err) {
         const errorMsg = 'Cidade não encontrada. Tente novamente.';
         setError(errorMsg);
+        addToast(errorMsg, 'error');
         throw new Error(errorMsg);
       } finally {
         setLoading(false);
       }
     },
-    [setLoading, setError, setCurrentWeather, setForecast]
+    [setLoading, setError, setCurrentWeather, setForecast, addToast]
   );
 
   const fetchByCoords = useCallback(
@@ -52,12 +55,13 @@ export const useWeather = () => {
       } catch (err) {
         const errorMsg = 'Falha ao buscar dados do clima';
         setError(errorMsg);
+        addToast(errorMsg, 'error');
         throw new Error(errorMsg);
       } finally {
         setLoading(false);
       }
     },
-    [setLoading, setError, setCurrentWeather, setForecast]
+    [setLoading, setError, setCurrentWeather, setForecast, addToast]
   );
 
   return { fetchByCity, fetchByCoords };

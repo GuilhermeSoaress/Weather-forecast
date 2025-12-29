@@ -38,6 +38,14 @@ export const useWeatherDashboard = () => {
     [searchCity, fetchByCity]
   );
 
+  const handleBackToLocation = useCallback(async () => {
+    if (coords) {
+      const setCityName = useLocationStore.getState().setCityName;
+      setCityName('');
+      await fetchByCoords(coords.lat, coords.lon);
+    }
+  }, [coords, fetchByCoords]);
+
   return {
     cityName,
     currentWeather,
@@ -46,5 +54,6 @@ export const useWeatherDashboard = () => {
     coords,
     hasError: weatherError || locationError,
     handleCitySearch,
+    handleBackToLocation,
   };
 };

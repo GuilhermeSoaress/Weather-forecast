@@ -5,6 +5,8 @@ import {
   HourlyForecast,
   PrecipitationForecast,
 } from '@/features/weather';
+import { motion } from 'framer-motion';
+import { Navigation } from 'lucide-react';
 
 import { useWeatherDashboard } from '../hooks/useWeatherDashboard';
 
@@ -17,6 +19,7 @@ export const WeatherDashboard = () => {
     coords,
     hasError,
     handleCitySearch,
+    handleBackToLocation,
   } = useWeatherDashboard();
 
   if (isLoading) {
@@ -30,7 +33,7 @@ export const WeatherDashboard = () => {
     );
   }
 
-  if (hasError && !coords) {
+  if (!currentWeather && !isLoading) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center px-4 py-12">
         <div className="mb-12 text-center">
@@ -50,12 +53,28 @@ export const WeatherDashboard = () => {
   return (
     <div className="min-h-screen px-4 py-6">
       <div className="mx-auto max-w-2xl">
-        <div className="mb-4 text-center">
-          <h1 className="text-3xl font-bold text-white drop-shadow-lg">
-            SkyCast
-          </h1>
-          {cityName && (
-            <p className="mt-1 text-lg font-medium text-white/90">{cityName}</p>
+        <div className="mb-4 flex items-center justify-between">
+          <div className="flex-1 text-center">
+            <h1 className="text-3xl font-bold text-white drop-shadow-lg">
+              SkyCast
+            </h1>
+            {cityName && (
+              <p className="mt-1 text-lg font-medium text-white/90">{cityName}</p>
+            )}
+          </div>
+          
+          {coords && cityName && (
+            <motion.button
+              onClick={handleBackToLocation}
+              className="rounded-xl bg-white/20 p-2.5 backdrop-blur-md transition hover:bg-white/30"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              title="Voltar à minha localização"
+            >
+              <Navigation className="h-5 w-5 text-white" />
+            </motion.button>
           )}
         </div>
 
