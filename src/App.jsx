@@ -1,7 +1,8 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import { WeatherDashboard } from '@/features/weather/pages/WeatherDashboard';
-import { WeatherParticles } from '@/shared/components/WeatherParticles';
+import { AnimatePresence, motion } from 'framer-motion';
+
 import { Toast } from '@/shared/components/Toast';
+import { WeatherParticles } from '@/shared/components/WeatherParticles';
 import { useThemeContext } from '@/shared/hooks/useThemeContext';
 
 function App() {

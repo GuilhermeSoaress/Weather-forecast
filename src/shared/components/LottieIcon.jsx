@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
-import Lottie from 'lottie-react';
 
-import sunAnimation from '@/assets/lottie/sun.json';
-import moonAnimation from '@/assets/lottie/moon.json';
-import cloudsAnimation from '@/assets/lottie/clouds.json';
 import cloudsNightAnimation from '@/assets/lottie/clouds-night.json';
-import rainAnimation from '@/assets/lottie/rain.json';
-import thunderstormAnimation from '@/assets/lottie/thunderstorm.json';
-import snowAnimation from '@/assets/lottie/snow.json';
+import cloudsAnimation from '@/assets/lottie/clouds.json';
 import mistAnimation from '@/assets/lottie/mist.json';
+import moonAnimation from '@/assets/lottie/moon.json';
+import rainAnimation from '@/assets/lottie/rain.json';
+import snowAnimation from '@/assets/lottie/snow.json';
+import sunAnimation from '@/assets/lottie/sun.json';
+import thunderstormAnimation from '@/assets/lottie/thunderstorm.json';
+import Lottie from 'lottie-react';
 
 const animationMap = {
   '@/assets/lottie/sun.json': sunAnimation,

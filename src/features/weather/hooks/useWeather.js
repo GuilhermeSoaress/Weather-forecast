@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 
+import { useToastStore } from '@/shared/store/toastStore';
+
 import {
   getForecastByCity,
   getForecastByCoords,
@@ -7,7 +9,6 @@ import {
   getWeatherByCoords,
 } from '../services/weatherService';
 import { useWeatherStore } from '../store/weatherStore';
-import { useToastStore } from '@/shared/store/toastStore';
 
 export const useWeather = () => {
   const setCurrentWeather = useWeatherStore((state) => state.setCurrentWeather);

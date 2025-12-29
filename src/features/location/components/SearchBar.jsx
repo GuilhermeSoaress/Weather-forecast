@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, Loader2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+
+import { AnimatePresence, motion } from 'framer-motion';
+import { Loader2, MapPin, Search } from 'lucide-react';
+
 import { searchCities } from '../services/geocodingService';
 
 export const SearchBar = ({ onSearch }) => {
@@ -52,7 +54,8 @@ export const SearchBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (suggestions.length > 0) {
-      const cityToSelect = selectedIndex >= 0 ? suggestions[selectedIndex] : suggestions[0];
+      const cityToSelect =
+        selectedIndex >= 0 ? suggestions[selectedIndex] : suggestions[0];
       handleCitySelect(cityToSelect);
     } else if (input.trim()) {
       onSearch(input.trim());
@@ -73,7 +76,7 @@ export const SearchBar = ({ onSearch }) => {
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setSelectedIndex((prev) => 
+      setSelectedIndex((prev) =>
         prev < suggestions.length - 1 ? prev + 1 : prev
       );
     } else if (e.key === 'ArrowUp') {
@@ -149,22 +152,32 @@ export const SearchBar = ({ onSearch }) => {
                 }`}
                 whileHover={{ x: 4 }}
               >
-                <MapPin className={`h-4 w-4 ${
-                  selectedIndex === index ? 'text-white' : 'text-blue-500'
-                }`} />
+                <MapPin
+                  className={`h-4 w-4 ${
+                    selectedIndex === index ? 'text-white' : 'text-blue-500'
+                  }`}
+                />
                 <div className="flex-1">
                   <p className="text-sm font-medium">{city.name}</p>
                   {city.state && (
-                    <p className={`text-xs ${
-                      selectedIndex === index ? 'text-white/80' : 'text-gray-500'
-                    }`}>
+                    <p
+                      className={`text-xs ${
+                        selectedIndex === index
+                          ? 'text-white/80'
+                          : 'text-gray-500'
+                      }`}
+                    >
                       {city.state}, {city.country}
                     </p>
                   )}
                   {!city.state && (
-                    <p className={`text-xs ${
-                      selectedIndex === index ? 'text-white/80' : 'text-gray-500'
-                    }`}>
+                    <p
+                      className={`text-xs ${
+                        selectedIndex === index
+                          ? 'text-white/80'
+                          : 'text-gray-500'
+                      }`}
+                    >
                       {city.country}
                     </p>
                   )}

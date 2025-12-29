@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Clock } from 'lucide-react';
+
 import { GlassCard } from '@/shared/components/GlassCard';
 
 export const HourlyForecast = ({ data }) => {
@@ -31,7 +32,10 @@ export const HourlyForecast = ({ data }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: 'rgba(255, 255, 255, 0.15)',
+              }}
             >
               <p className="text-sm font-medium text-white/80">{hour}h</p>
               <img

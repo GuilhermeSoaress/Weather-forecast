@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { motion, useSpring, useTransform } from 'framer-motion';
 import { Cloud, Droplets, Eye, Wind } from 'lucide-react';
+
 import { GlassCard } from '@/shared/components/GlassCard';
 import { LottieIcon } from '@/shared/components/LottieIcon';
 import { useThemeContext } from '@/shared/hooks/useThemeContext';

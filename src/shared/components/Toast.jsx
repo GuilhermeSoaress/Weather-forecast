@@ -1,5 +1,6 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, AlertCircle, CheckCircle, Info } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
+
 import { useToastStore } from '@/shared/store/toastStore';
 
 const icons = {
@@ -34,7 +35,9 @@ export const Toast = () => {
               <div className={`rounded-lg ${colors[toast.type]} p-1.5`}>
                 <Icon className="h-4 w-4 text-white" />
               </div>
-              <p className="text-sm font-medium text-gray-800">{toast.message}</p>
+              <p className="text-sm font-medium text-gray-800">
+                {toast.message}
+              </p>
               <button
                 onClick={() => removeToast(toast.id)}
                 className="ml-2 rounded-lg p-1 transition hover:bg-gray-200"

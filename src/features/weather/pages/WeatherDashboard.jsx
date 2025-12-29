@@ -61,10 +61,12 @@ export const WeatherDashboard = () => {
               SkyCast
             </h1>
             {cityName && (
-              <p className="mt-1 text-lg font-medium text-white/90">{cityName}</p>
+              <p className="mt-1 text-lg font-medium text-white/90">
+                {cityName}
+              </p>
             )}
           </div>
-          
+
           {coords && cityName && (
             <motion.button
               onClick={handleBackToLocation}

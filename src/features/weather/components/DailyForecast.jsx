@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Calendar, TrendingDown, TrendingUp } from 'lucide-react';
+
 import { GlassCard } from '@/shared/components/GlassCard';
 
 export const DailyForecast = ({ data }) => {
@@ -39,7 +40,10 @@ export const DailyForecast = ({ data }) => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
-              whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+              whileHover={{
+                scale: 1.02,
+                backgroundColor: 'rgba(255, 255, 255, 0.15)',
+              }}
             >
               <p className="w-16 text-sm font-medium capitalize text-white">
                 {day}

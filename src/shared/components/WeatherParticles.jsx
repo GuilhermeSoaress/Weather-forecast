@@ -1,6 +1,8 @@
 import { useCallback, useMemo } from 'react';
+
 import Particles from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
+
 import { PARTICLE_CONFIGS } from '@/shared/constants/weatherThemes';
 
 export const WeatherParticles = ({ condition }) => {
@@ -9,14 +11,18 @@ export const WeatherParticles = ({ condition }) => {
   }, []);
 
   const config = useMemo(() => {
-    if (condition === 'rain' || condition === 'drizzle' || condition === 'thunderstorm') {
+    if (
+      condition === 'rain' ||
+      condition === 'drizzle' ||
+      condition === 'thunderstorm'
+    ) {
       return PARTICLE_CONFIGS.rain;
     }
-    
+
     if (condition === 'snow') {
       return PARTICLE_CONFIGS.snow;
     }
-    
+
     return null;
   }, [condition]);
 
