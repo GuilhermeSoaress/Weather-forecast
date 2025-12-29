@@ -44,7 +44,9 @@ export const WeatherDashboard = () => {
             Previsão do tempo em tempo real
           </p>
         </div>
-        <SearchBar onSearch={handleCitySearch} />
+        <div className="w-full max-w-md">
+          <SearchBar onSearch={handleCitySearch} />
+        </div>
         <CitySuggestions onCitySelect={handleCitySearch} />
       </div>
     );
