@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import { CloudRain, Droplets } from 'lucide-react';
+import { GlassCard } from '@/shared/components/GlassCard';
 
 export const PrecipitationForecast = ({ data }) => {
   if (!data || !data.list) return null;
@@ -13,13 +15,18 @@ export const PrecipitationForecast = ({ data }) => {
   };
 
   return (
-    <div className="w-full rounded-3xl bg-white/10 p-6 backdrop-blur-md">
-      <div className="mb-4 flex items-center gap-2">
+    <GlassCard className="w-full p-6">
+      <motion.div
+        className="mb-4 flex items-center gap-2"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+      >
         <CloudRain className="h-5 w-5 text-white" />
         <h3 className="text-lg font-semibold text-white">
           Precipitação - 5 dias
         </h3>
-      </div>
+      </motion.div>
       <div className="space-y-3">
         {dailyData.map((item, index) => {
           const day = getDayName(item.dt);
@@ -28,9 +35,13 @@ export const PrecipitationForecast = ({ data }) => {
           const hasRain = item.weather[0].main.includes('Rain');
 
           return (
-            <div
+            <motion.div
               key={index}
               className="flex items-center justify-between rounded-xl bg-white/10 p-4"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
             >
               <p className="w-16 text-sm font-medium capitalize text-white">
                 {day}
@@ -51,10 +62,10 @@ export const PrecipitationForecast = ({ data }) => {
                   {humidity}%
                 </span>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
-    </div>
+    </GlassCard>
   );
 };

@@ -21,10 +21,10 @@ export const useWeatherDashboard = () => {
   const weatherError = useWeatherStore((state) => state.error);
 
   useEffect(() => {
-    if (coords) {
+    if (coords && !cityName) {
       fetchByCoords(coords.lat, coords.lon);
     }
-  }, [coords, fetchByCoords]);
+  }, [coords, cityName, fetchByCoords]);
 
   const handleCitySearch = useCallback(
     async (city) => {

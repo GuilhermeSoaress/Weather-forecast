@@ -4,6 +4,7 @@ import { useLocationStore } from '../store/locationStore';
 
 export const useLocationSearch = () => {
   const setCityName = useLocationStore((state) => state.setCityName);
+  const setCoords = useLocationStore((state) => state.setCoords);
 
   const searchCity = useCallback(
     (cityName) => {
@@ -12,10 +13,11 @@ export const useLocationSearch = () => {
         throw new Error('Nome da cidade inválido');
       }
 
+      setCoords(null);
       setCityName(trimmedCity);
       return trimmedCity;
     },
-    [setCityName]
+    [setCityName, setCoords]
   );
 
   return { searchCity };

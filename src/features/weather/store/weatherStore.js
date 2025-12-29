@@ -5,11 +5,13 @@ export const useWeatherStore = create((set) => ({
   forecast: null,
   isLoading: false,
   error: null,
+  currentTheme: null,
 
   setCurrentWeather: (currentWeather) => set({ currentWeather }),
   setForecast: (forecast) => set({ forecast }),
   setLoading: (isLoading) => set({ isLoading }),
   setError: (error) => set({ error }),
+  setCurrentTheme: (currentTheme) => set({ currentTheme }),
 
   reset: () =>
     set({
@@ -17,5 +19,6 @@ export const useWeatherStore = create((set) => ({
       forecast: null,
       isLoading: false,
       error: null,
+      currentTheme: null,
     }),
 }));

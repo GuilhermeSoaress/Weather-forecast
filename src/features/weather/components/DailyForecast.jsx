@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import { Calendar, TrendingDown, TrendingUp } from 'lucide-react';
+import { GlassCard } from '@/shared/components/GlassCard';
 
 export const DailyForecast = ({ data }) => {
   if (!data || !data.list) return null;
@@ -13,11 +15,16 @@ export const DailyForecast = ({ data }) => {
   };
 
   return (
-    <div className="w-full rounded-3xl bg-white/10 p-6 backdrop-blur-md">
-      <div className="mb-4 flex items-center gap-2">
+    <GlassCard className="w-full p-6">
+      <motion.div
+        className="mb-4 flex items-center gap-2"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+      >
         <Calendar className="h-5 w-5 text-white" />
         <h3 className="text-lg font-semibold text-white">Próximos 5 dias</h3>
-      </div>
+      </motion.div>
       <div className="space-y-3">
         {dailyData.map((item, index) => {
           const day = getDayName(item.dt);
@@ -26,9 +33,13 @@ export const DailyForecast = ({ data }) => {
           const icon = item.weather[0].icon;
 
           return (
-            <div
+            <motion.div
               key={index}
               className="flex items-center justify-between rounded-xl bg-white/10 p-4"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
             >
               <p className="w-16 text-sm font-medium capitalize text-white">
                 {day}
@@ -50,10 +61,10 @@ export const DailyForecast = ({ data }) => {
                   </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
-    </div>
+    </GlassCard>
   );
 };

@@ -21,7 +21,7 @@ export const WeatherDashboard = () => {
 
   if (isLoading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600">
+      <div className="flex h-screen items-center justify-center">
         <div className="text-center">
           <div className="mb-4 inline-block h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white"></div>
           <p className="text-xl font-medium text-white">Carregando...</p>
@@ -32,7 +32,7 @@ export const WeatherDashboard = () => {
 
   if (hasError && !coords) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 px-4 py-12">
+      <div className="flex min-h-screen flex-col items-center justify-center px-4 py-12">
         <div className="mb-12 text-center">
           <h1 className="mb-3 text-5xl font-bold text-white drop-shadow-lg">
             SkyCast
@@ -48,7 +48,7 @@ export const WeatherDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 px-4 py-6">
+    <div className="min-h-screen px-4 py-6">
       <div className="mx-auto max-w-2xl">
         <div className="mb-4 text-center">
           <h1 className="text-3xl font-bold text-white drop-shadow-lg">
